@@ -37,7 +37,9 @@ def send_telegram_message(message):
     url = f"https://telegram.org{TELEGRAM_TOKEN}/sendMessage"
     payload = {"chat_id": CHAT_ID, "text": message, "parse_mode": "Markdown"}
     try:
-        requests.post(url, json=payload, timeout=10)
+        res = requests.post(url, json=payload, timeout=10)
+        if res.status_code != 200:
+            print(f"Telegram API Error: {res.text}")
     except Exception as e:
         print(f"Telegram Error: {e}")
 
@@ -53,6 +55,7 @@ def load_initial_history():
             for col in ['open', 'high', 'low', 'close', 'volume']:
                 df[col] = df[col].astype(float)
             market_data[sym] = df[['timestamp', 'open', 'high', 'low', 'close', 'volume']]
+            print(f"Loaded history for {sym.upper()}")
         except Exception as e:
             print(f"History load error for {sym}: {e}")
 
@@ -155,6 +158,7 @@ def on_message(ws, message):
 
 def start_websocket():
     load_initial_history()
+    send_telegram_message("🚀 *Crypto Trading Bot সফলভাবে চালু হয়েছে!*\nএখন ৫টি কয়েনের মার্কেট স্ক্যান চলছে...")
     streams = "/".join([f"{s}@kline_{INTERVAL}" for s in SYMBOLS])
     ws_url = f"wss://data-stream.binance.vision/stream?streams={streams}"
     
