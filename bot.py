@@ -11,8 +11,8 @@ from flask import Flask
 # ==========================================
 # ১. আপনার টেলিগ্রাম তথ্য এখানে বসান
 # ==========================================
-TELEGRAM_TOKEN = 9108825365:AAErPQ1ndyc4ZA2muKTCt2_Sl_vsjh0kLqM
-CHAT_ID = 1576421688
+TELEGRAM_TOKEN = "9108825365:AAGlxq2TIMS0GIzE_7Q-0bWNE7J3ZJOvuEo"
+CHAT_ID = "1576421688"
 
 # ৫টি কয়েন এবং ১৫ মিনিটের টাইমফ্রেম
 SYMBOLS = ["btcusdt", "ethusdt", "solusdt", "bnbusdt", "xrpusdt"]
