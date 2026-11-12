@@ -1,5 +1,7 @@
 requests
 pandas
 numpy
-flask
 websocket-client
+flask
+gunicorn
+
